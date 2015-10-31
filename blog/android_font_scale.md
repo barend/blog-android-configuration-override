@@ -24,7 +24,7 @@ Here's what that looks like:
 
 Unfortunately, there's a catch.<!--more-->
 
-Android has a "Large Text" setting in its accessibility options. If you use this trick to override a device setting, you will wipe out the Large Text preference, hurting your accessibilty support. This problem is easily overlooked, and luckily, easily fixed.
+Android has a "Large Text" setting in its accessibility options. If you use the `overrideConfiguration` method to set your own resource configurtation, you will wipe out the Large Text preference, hurting your accessibilty support. This problem is easily overlooked, and luckily, easily fixed.
 
 ![Screenshot](final_03_large_defaultlocale.png "Large fonts configuration")
 ![Screenshot](final_04_large_overridelocale_broken.png "Dutch locale override, unfortunately the large fonts setting is now lost.")
@@ -56,7 +56,7 @@ public class MainActivity extends Activity {
 
 The app now works as intended, with accessibility support intact.
 
-![Screenshot](final_03_large_defaultlocale.png "Large fonts configuration and locale override now both work.")
+![Screenshot](final_05_large_overridelocale_fixed.png "Large fonts configuration and locale override now both work.")
 
 Long story short: when you use `applyOverrideConfiguration`, always test your app in the Large Fonts accessibility setting. Use the `System.Settings.FONT_SCALE` property to configure the `fontScale` in your override configuration.
 
