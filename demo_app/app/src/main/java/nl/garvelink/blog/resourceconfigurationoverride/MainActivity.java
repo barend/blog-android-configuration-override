@@ -34,13 +34,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(newBase);
-        final Configuration override = new Configuration();
+        final Configuration override = new Configuration(
+                // Copy the original configuration so it isn't lost.
+                newBase.getResources().getConfiguration()
+            );
         override.locale = new Locale("nl", "NL");
-        override.fontScale = Settings.System.getFloat(
-                newBase.getContentResolver(),
-                Settings.System.FONT_SCALE,
-                1.0f);
         applyOverrideConfiguration(override);
+
+        // BTW: You can also access the fontScale value using Settings.System:
+        // Settings.System.getFloat(getContentResolver(), Settings.System.FONT_SCALE, 1.0f);
     }
 
     @Override
